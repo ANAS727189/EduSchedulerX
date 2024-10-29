@@ -1,2 +1,26 @@
-.class/
+# Class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Eclipse, IntelliJ IDEA, and VS Code settings
 .vscode/
+.idea/
+*.iml
+
+# Logs and database files
+*.log
+*.sql
+*.sqlite
+
+# Maven and Gradle directories
+target/
+out/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
