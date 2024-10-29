@@ -1,0 +1,24 @@
+id,courseCode,name,courseType,branch,section,lecture,theory,practical,credits,hoursPerWeek,eligibleFacultyIds
+CS201,CS201,Mathematics for Data Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F001
+CS202,CS202,Discrete Mathematics,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F002
+CS203,CS203,Data Structures and Algorithms,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F003
+CS204,CS204,Computer Organization,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F004
+CS205,CS205,Theory of Computation,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F005
+CS206,CS206,Language and Communication,Theory,CSE,A,2,0,2,2-0-2-0-3,4,F006
+CS301,CS301,Statistics for Computer Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F007
+CS302,CS302,Computer Networks,Theory,CSE,A,3,1,2,3-1-2-0-5,6,F008
+CS303,CS303,Artificial Intelligence,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F009
+CS304,CS304,Advanced Algorithm Design,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F010
+CS305,CS305,Cryptography and Information Security,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F011
+CS306,CS306,Parallel Computing,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F012
+EC201,EC201,Mathematics for ECE,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F013
+EC202,EC202,Signals and Systems,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F014
+EC203,EC203,Digital Electronics,Theory,ECE,A,3,0,2,3-0-2-0-4,5,F015
+EC204,EC204,Analog Electronics,Theory,ECE,A,3,0,2,3-0-2-0-4,5,F016
+EC205,EC205,Electromagnetic Theory,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F017
+DS201,DS201,Mathematics for Data Science,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F018
+DS202,DS202,Introduction to Data Science,Theory,DSAI,A,3,1,2,3-1-2-0-5,6,F019
+DS203,DS203,Machine Learning Basics,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F020
+DS204,DS204,Data Visualization,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F021
+DS205,DS205,Statistical Methods,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F022
+DS206,DS206,Programming for Data Science,Theory,DSAI,A,2,0,2,2-0-2-0-3,4,F023
