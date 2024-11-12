@@ -1,4 +1,4 @@
-# 🗓️ EduScheduler | A Timetable Management System
+# 🗓️ EduScheduler | Smart Timetable Management System
 
 ![EduScheduler](/timetable_data/timetable_CSE-A-2024.png?height=200&width=600)
 
