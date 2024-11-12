@@ -1,6 +1,6 @@
 # 🗓️ EduScheduler | A Timetable Management System
 
-![EduScheduler](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/placeholder.svg?height=200&width=600)
+![EduScheduler](/timetable_data/timetable_CSE-A-2024.png?height=200&width=600)
 
 ## 📚 Table of Contents
 
