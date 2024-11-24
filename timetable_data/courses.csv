@@ -1,24 +1,82 @@
 id,courseCode,name,courseType,branch,section,lecture,theory,practical,credits,hoursPerWeek,eligibleFacultyIds
-CS201,CS201,Mathematics for Data Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F001
-CS202,CS202,Discrete Mathematics,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F002
-CS203,CS203,Data Structures and Algorithms,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F003
-CS204,CS204,Computer Organization,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F004
-CS205,CS205,Theory of Computation,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F005
-CS206,CS206,Language and Communication,Theory,CSE,A,2,0,2,2-0-2-0-3,4,F006
-CS301,CS301,Statistics for Computer Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F007
-CS302,CS302,Computer Networks,Theory,CSE,A,3,1,2,3-1-2-0-5,6,F008
-CS303,CS303,Artificial Intelligence,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F009
-CS304,CS304,Advanced Algorithm Design,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F010
-CS305,CS305,Cryptography and Information Security,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F011
-CS306,CS306,Parallel Computing,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F012
-EC201,EC201,Mathematics for ECE,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F013
-EC202,EC202,Signals and Systems,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F014
-EC203,EC203,Digital Electronics,Theory,ECE,A,3,0,2,3-0-2-0-4,5,F015
-EC204,EC204,Analog Electronics,Theory,ECE,A,3,0,2,3-0-2-0-4,5,F016
-EC205,EC205,Electromagnetic Theory,Theory,ECE,A,3,1,0,3-1-0-0-4,4,F017
-DS201,DS201,Mathematics for Data Science,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F018
-DS202,DS202,Introduction to Data Science,Theory,DSAI,A,3,1,2,3-1-2-0-5,6,F019
-DS203,DS203,Machine Learning Basics,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F020
-DS204,DS204,Data Visualization,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F021
-DS205,DS205,Statistical Methods,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F022
-DS206,DS206,Programming for Data Science,Theory,DSAI,A,2,0,2,2-0-2-0-3,4,F023
+
+
+MA201,MA201,Probability,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F001
+CS201,CS201,Discrete Mathematics,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F002
+CS207,CS207,Object Oriented Programming,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F003
+CS208,CS208,Computer Architecture,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F004
+CS202,CS202,Design & Analysis of Algorithms,Theory,CSE,A,3,1,0,3-1-2-0-5,4,F005
+HS206,HS206,Industrial Social Pschology,Theory,CSE,A,2,0,2,3-0-0-0-3,4,F006
+
+
+CS161,CS161,Problem Solving Through Programming,Theory,CSE,A,3,1,0,3-0-2-0-4,4,F010
+HS161,HS161,English Language & Communication,Theory,CSE,A,2,0,2,3-0-0-0-3,4,F011
+MA162,MA162,Probability,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F012
+EC161,EC161,Digital Design,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F013
+ASD151,ASD151,Introduction To Design,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F014
+CS151,CS151,Introduction To CyberSecurity,CSE,A,3,1,0,3-1-0-0-4,4,F015
+PH151,PH151,EIntroduction To Quantum Physics,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F016
+HS151,HS151,Introduction To Personal Finance,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F017
+
+
+CS309,CS309,Statistics for Computer Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F020
+CS303,CS303,Computer Networks,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F021
+CS304,CS304,Artificial Intelligence,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F022
+HS101,HS101,Environmental Studies,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F023
+GS307,GS307,Graph Theory,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F024
+AA304,AA304,Advanced Algorithm design,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F025
+CI301,CI301,Cryptography & Information Security,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F026
+PC309,PC309,Parallel Computing,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F027
+IO304,IO304,Internet Of Things,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F028
+
+
+
+CS457,CS457,DevOps & Its Applications,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F030
+CS451,CS451,Deep Learning,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F031
+CS472,CS472,BioInformatics,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F032
+CS458,CS468,Information Retrieval,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F033
+CS469,CS469,Virtualization & Cloud Computing,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F034
+
+
+CS471,CS471,Deep Computer Vision,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F040
+DS452,DS452,Advanced Optimization Techniques,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F041
+CS367,CS367,Image Processing & Computer Vision,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F042
+DS457,DS457,Human Computer Interaction,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F043
+EC454,EC454,Antenna & Radar system,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F044
+
+
+DS201,DS201,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F050
+CS201,CS201,Discrete Mathematics,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F051
+CS207,CS207,Object Oriented Programming,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F052
+CS202,CS202,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F053
+EC209,EC209,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F054
+HS205,HS205,Industrial Social Pschology,Theory,DSAI,A,2,0,2,3-0-0-0-3,4,F055
+
+
+DS101,DS101,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F060
+DS102,DS102,Discrete Mathematics,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F061
+CS105,CS105,Object Oriented Programming,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F062
+DS104,DS104,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F063
+HS103,HS103,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F064
+
+
+DS301,DS301,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F070
+DS302,DS302,Discrete Mathematics,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F071
+DS303,DS303,Object Oriented Programming,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F072
+CS307,CS307,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F073
+DS304,DS304,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F074
+
+
+DS401,DS401,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F080
+CS457,CS457,Discrete Mathematics,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F081
+CS451,CS451,Object Oriented Programming,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F082
+CS472,CS472,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F083
+DS452,DS452,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F084
+DS457,DS457,Industrial Social Pschology,Theory,DSAI,A,2,0,2,3-0-0-0-3,4,F085
+
+
+
+
+
+
+

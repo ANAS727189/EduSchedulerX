@@ -6,12 +6,15 @@ import java.util.Random;
 
 public class Main {
     private static final String DATA_FOLDER = "timetable_data";
+    private static final String DATA_TIMETABLE = "time_table";
     private static final String DATA_FILE = DATA_FOLDER + File.separator + "timetable.dat";
     private static final String COURSES_CSV = DATA_FOLDER + File.separator + "courses.csv";
     private static final String BATCHES_CSV = DATA_FOLDER + File.separator + "batches.csv";
     private static final int MAX_RETRIES = 10;
 
     public static void main(String[] args) {
+        displayWelcomeBanner();
+        createRequiredDirectories();
         TimeTable timeTable = loadTimeTable();
         if (timeTable.isEmpty()) {
             timeTable = createTimeTableFromCSV();
@@ -22,10 +25,12 @@ public class Main {
             System.out.println("\n╔════════════════════════════════╗");
             System.out.println("║   Timetable Management System  ║");
             System.out.println("╠════════════════════════════════╣");
-            System.out.println("║ 1. View Timetable              ║");
-            System.out.println("║ 2. View Free Slots             ║");
-            System.out.println("║ 3. Generate Timetable Image    ║");
-            System.out.println("║ 4. Exit                        ║");
+            System.out.println("║ 1. View All Timetables         ║");
+            System.out.println("║ 2. View Specific Timetable     ║");
+            System.out.println("║ 3. View Free Slots             ║");
+            System.out.println("║ 4. Generate Timetable Image    ║");
+            System.out.println("║ 5. Generate Timetable CSV      ║");
+            System.out.println("║ 6. Exit                        ║");
             System.out.println("╚════════════════════════════════╝");
             System.out.print("Choose an option: ");
             
@@ -34,15 +39,21 @@ public class Main {
             
             switch (choice) {
                 case 1:
-                    viewTimetable(scanner, timeTable);
+                    viewAllTimetables(timeTable);
                     break;
                 case 2:
-                    findFreeSlots(scanner, timeTable);
+                    viewTimetable(scanner, timeTable);
                     break;
                 case 3:
-                    generateTimetableImage(scanner, timeTable);
+                    findFreeSlots(scanner, timeTable);
                     break;
                 case 4:
+                    generateTimetableImage(scanner, timeTable);
+                    break;
+                case 5:
+                    generateTimetableCSV(scanner, timeTable);
+                    break;
+                case 6:
                     saveTimeTable(timeTable);
                     System.out.println("Exiting...");
                     scanner.close();
@@ -51,6 +62,20 @@ public class Main {
                     System.out.println("Invalid option!");
             }
         }
+    }
+
+
+    private static void displayWelcomeBanner() {
+        System.out.println("\n\n");
+        System.out.println("███████╗██████╗ ██╗   ██╗███████╗ ██████╗██╗  ██╗███████╗██████╗ ██╗   ██╗██╗     ███████╗██████╗ ██╗  ██╗");
+        System.out.println("██╔════╝██╔══██╗██║   ██║██╔════╝██╔════╝██║  ██║██╔════╝██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗╚██╗██╔╝");
+        System.out.println("█████╗  ██║  ██║██║   ██║███████╗██║     ███████║█████╗  ██║  ██║██║   ██║██║     █████╗  ██████╔╝ ╚███╔╝ ");
+        System.out.println("██╔══╝  ██║  ██║██║   ██║╚════██║██║     ██╔══██║██╔══╝  ██║  ██║██║   ██║██║     ██╔══╝  ██╔══██╗ ██╔██╗ ");
+        System.out.println("███████╗██████╔╝╚██████╔╝███████║╚██████╗██║  ██║███████╗██████╔╝╚██████╔╝███████╗███████╗██║  ██║██╔╝ ██╗");
+        System.out.println("╚══════╝╚═════╝  ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝");
+        System.out.println("\n                    Welcome to EduSchedulerX - Automating Academic Excellence                    ");
+        System.out.println("                    A Java-based solution for managing academic timetables                      ");
+        System.out.println("\n═══════════════════════════════════════════════════════════════════════════════════════════════════\n");
     }
 
     private static TimeTable createTimeTableFromCSV() {
@@ -70,16 +95,14 @@ public class Main {
                 if (parts.length >= 12) {
                     try {
                         Course course = new Course(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5],
-                                                   Integer.parseInt(parts[6]), Integer.parseInt(parts[7]),
-                                                   Integer.parseInt(parts[8]), parts[9], Integer.parseInt(parts[10]),
-                                                   Arrays.asList(parts[11].split(";")));
+                                                 Integer.parseInt(parts[6]), Integer.parseInt(parts[7]),
+                                                 Integer.parseInt(parts[8]), parts[9], Integer.parseInt(parts[10]),
+                                                 Arrays.asList(parts[11].split(";")));
                         coursesMap.put(course.getId(), course);
                     } catch (NumberFormatException e) {
                         System.out.println("Error parsing course line: " + line);
                         e.printStackTrace();
                     }
-                } else {
-                    System.out.println("Invalid course line (not enough fields): " + line);
                 }
             }
             System.out.println("Number of courses loaded: " + coursesMap.size());
@@ -95,39 +118,95 @@ public class Main {
                 if (parts.length >= 7) {
                     try {
                         Batch batch = new Batch(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),
-                                                Arrays.asList(parts[4].split(";")),
-                                                Arrays.asList(parts[5].split(";")),
-                                                Arrays.asList(parts[6].split(";")));
+                                              Arrays.asList(parts[4].split(";")),
+                                              Arrays.asList(parts[5].split(";")),
+                                              Arrays.asList(parts[6].split(";")));
                         batchesMap.put(batch.getId(), batch);
                     } catch (NumberFormatException e) {
                         System.out.println("Error parsing batch line: " + line);
                         e.printStackTrace();
                     }
-                } else {
-                    System.out.println("Invalid batch line (not enough fields): " + line);
                 }
             }
             System.out.println("Number of batches loaded: " + batchesMap.size());
 
             // Generate timetable
             String[] days = {"MON", "TUE", "WED", "THU", "FRI"};
-            String[] timeSlots = {"09:00-10:30", "10:45-12:15", "14:30-16:00", "16:00-17:30"};
+            String[] regularSlots = {"09:00-10:30", "10:45-12:15", "14:30-16:00", "16:00-17:30"};
+            String[] labSlots = {"14:30-17:30"};
+            
+            List<String> minorCourses = Arrays.asList("cybersecurity", "genai", "vlsi", "research");
+            String minorSlot = "08:00-09:00";
 
             for (Batch batch : batchesMap.values()) {
+                // Schedule minor courses only for 2nd year students
+                if (batch.getYear() == 2) {
+                    for (String minorCourse : minorCourses) {
+                        String day = days[new Random().nextInt(days.length)];
+                        String classroom = batch.getLectureRoomIDs().get(new Random().nextInt(batch.getLectureRoomIDs().size()));
+                        
+                        String[] batchParts = batch.getBatchName().split("-");
+                        String branch = batchParts[0];
+                        String section = batchParts.length > 1 ? batchParts[1] : "A";
+                        
+                        Course course = new Course(
+                            minorCourse.toUpperCase(),
+                            minorCourse.toUpperCase(),
+                            "Minor in " + minorCourse,
+                            "minor",
+                            branch,
+                            section,
+                            1, 0, 0,
+                            "1-0-0-0-1",
+                            1,
+                            Arrays.asList("F001")
+                        );
+                        
+                        Class newClass = new Class(
+                            batch.getBatchName(),
+                            classroom,
+                            course,
+                            new TimeSlot(day, minorSlot.split("-")[0], minorSlot.split("-")[1]),
+                            false
+                        );
+
+                        timeTable.addClass(newClass, batch.getBatchName());
+                    }
+                }
+
+                // Schedule regular courses
                 for (String courseId : batch.getCourseIds()) {
                     Course course = coursesMap.get(courseId);
                     if (course != null) {
+                        String[] batchParts = batch.getBatchName().split("-");
+                        String branch = batchParts[0];
+                        String section = batchParts.length > 1 ? batchParts[1] : "A";
+                        course = new Course(
+                            course.getId(), course.getCourseCode(), course.getName(),
+                            course.getCourseType(), branch, section,
+                            course.getLecture(), course.getTheory(), course.getPractical(),
+                            course.getCredits(), course.getHoursPerWeek(),
+                            course.getEligibleFacultyIds()
+                        );
+
                         int totalHours = course.getLecture() + course.getTheory() + course.getPractical();
                         for (int i = 0; i < totalHours; i++) {
                             boolean added = false;
                             int retries = 0;
                             while (!added && retries < MAX_RETRIES) {
                                 String day = days[new Random().nextInt(days.length)];
-                                String timeSlot = timeSlots[new Random().nextInt(timeSlots.length)];
+                                String timeSlot;
+                                String classroom;
+
+                                if (course.getCourseType().equalsIgnoreCase("practical")) {
+                                    timeSlot = labSlots[new Random().nextInt(labSlots.length)];
+                                    classroom = batch.getPracticalRoomIDs().get(new Random().nextInt(batch.getPracticalRoomIDs().size()));
+                                } else {
+                                    timeSlot = regularSlots[new Random().nextInt(regularSlots.length)];
+                                    classroom = batch.getLectureRoomIDs().get(new Random().nextInt(batch.getLectureRoomIDs().size()));
+                                }
+
                                 String[] times = timeSlot.split("-");
-                                String classroom = course.getCourseType().equalsIgnoreCase("practical") ?
-                                                   batch.getPracticalRoomIDs().get(new Random().nextInt(batch.getPracticalRoomIDs().size())) :
-                                                   batch.getLectureRoomIDs().get(new Random().nextInt(batch.getLectureRoomIDs().size()));
 
                                 Class newClass = new Class(
                                     batch.getBatchName(),
@@ -138,31 +217,81 @@ public class Main {
                                 );
 
                                 if (timeTable.addClass(newClass, course.getBranch())) {
-                                    // System.out.println("Added " + course.getCourseCode() + " to " + day + " " + timeSlot + " for " + batch.getBatchName());
                                     added = true;
                                 } else {
                                     retries++;
                                 }
                             }
-                            // if (!added) {
-                            //     System.out.println("Unable to add " + course.getCourseCode() + " for " + batch.getBatchName() + " after " + MAX_RETRIES + " attempts.");
-                            // }
                         }
                     }
                 }
             }
             timeTable.scheduleLunch();
+            return timeTable;
         } catch (IOException e) {
-            // System.out.println("Error reading CSV files: " + e.getMessage());
+            System.out.println("Error reading CSV files: " + e.getMessage());
             e.printStackTrace();
+            return new TimeTable();
         }
-        return timeTable;
+    }
+
+
+     private static void viewAllTimetables(TimeTable timeTable) {
+        System.out.println("\n=== All Timetables ===");
+        List<String> batches = getAllBatches();
+        for (String batch : batches) {
+            System.out.println("\nTimetable for " + batch + ":");
+            timeTable.displayTimetable(batch);
+            System.out.println("\nPress Enter to continue to the next timetable...");
+            new Scanner(System.in).nextLine();
+        }
+    }
+
+    private static List<String> getAllBatches() {
+        List<String> batches = new ArrayList<>();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(BATCHES_CSV));
+            // Skip the header
+            for (int i = 1; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split(",");
+                if (parts.length > 1) {
+                    batches.add(parts[1]); // Assuming batchName is the second column
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading batches from CSV: " + e.getMessage());
+        }
+        return batches;
     }
 
     private static void viewTimetable(Scanner scanner, TimeTable timeTable) {
         System.out.print("Enter batch name to view: ");
         String batchName = scanner.nextLine();
         timeTable.displayTimetable(batchName);
+    }
+
+    private static void generateTimetableCSV(Scanner scanner, TimeTable timeTable) {
+        System.out.print("Enter batch name to generate CSV for: ");
+        String batchName = scanner.nextLine();
+        String outputPath = DATA_TIMETABLE + File.separator + "timetable_" + batchName + ".csv";
+        
+        try {
+            timeTable.generateCSV(batchName, outputPath);
+            System.out.println("CSV file generated successfully: " + outputPath);
+            
+            System.out.print("Do you want to open the generated CSV file? (Y/N): ");
+            String openFile = scanner.nextLine().toUpperCase();
+            if (openFile.equals("Y")) {
+                File csvFile = new File(outputPath);
+                if (csvFile.exists()) {
+                    Desktop.getDesktop().open(csvFile);
+                } else {
+                    System.out.println("Error: The generated CSV file does not exist.");
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error generating or opening CSV file: " + e.getMessage());
+        }
     }
 
     private static void findFreeSlots(Scanner scanner, TimeTable timeTable) {
@@ -189,9 +318,18 @@ public class Main {
         return new TimeTable();
     }
 
+    private static void createRequiredDirectories() {
+        try {
+            Files.createDirectories(Paths.get(DATA_FOLDER));
+            Files.createDirectories(Paths.get(DATA_TIMETABLE));
+        } catch (IOException e) {
+            System.out.println("Error creating directories: " + e.getMessage());
+        }
+    }
+
     private static void saveTimeTable(TimeTable timeTable) {
         File dataFolder = new File(DATA_FOLDER);
-        if (!dataFolder.exists()) {
+if (!dataFolder.exists()) {
             dataFolder.mkdirs();
         }
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
@@ -212,7 +350,7 @@ public class Main {
         private List<String> practicalRoomIDs;
 
         public Batch(String id, String batchName, int year, int strength, 
-                     List<String> courseIds, List<String> lectureRoomIDs, List<String> practicalRoomIDs) {
+                    List<String> courseIds, List<String> lectureRoomIDs, List<String> practicalRoomIDs) {
             this.id = id;
             this.batchName = batchName;
             this.year = year;
@@ -221,6 +359,7 @@ public class Main {
             this.lectureRoomIDs = lectureRoomIDs;
             this.practicalRoomIDs = practicalRoomIDs;
         }
+
         // Getters
         public String getId() { return id; }
         public String getBatchName() { return batchName; }
@@ -234,18 +373,25 @@ public class Main {
     private static void generateTimetableImage(Scanner scanner, TimeTable timeTable) {
         System.out.print("Enter batch name to generate image for: ");
         String batchName = scanner.nextLine();
-        String outputPath = DATA_FOLDER + File.separator + "timetable_" + batchName + ".png";
-        timeTable.generateTimetableImage(batchName, outputPath);
+        String outputPath = DATA_TIMETABLE + File.separator + "timetable_" + batchName + ".png";
         
-        System.out.print("Do you want to open the generated image? (Y/N): ");
-        String openImage = scanner.nextLine().toUpperCase();
-        if (openImage.equals("Y")) {
-            try {
+        try {
+            timeTable.generateTimetableImage(batchName, outputPath);
+            System.out.println("Image file generated successfully: " + outputPath);
+            
+            System.out.print("Do you want to open the generated image? (Y/N): ");
+            String openImage = scanner.nextLine().toUpperCase();
+            if (openImage.equals("Y")) {
                 File imageFile = new File(outputPath);
-                Desktop.getDesktop().open(imageFile);
-            } catch (IOException e) {
-                System.out.println("Error opening the image: " + e.getMessage());
+                if (imageFile.exists()) {
+                    Desktop.getDesktop().open(imageFile);
+                } else {
+                    System.out.println("Error: The generated image file does not exist.");
+                }
             }
+        } catch (IOException e) {
+            System.out.println("Error generating or opening image file: " + e.getMessage());
         }
     }
 }
+
