@@ -1,0 +1,21 @@
+Day,Time,Course Code,Course Name,Room,Faculty
+MON,09:00-10:30,CS303,Computer Networks,C301,F021
+MON,10:45-12:15,GS307,Graph Theory,C301,F024
+MON,14:30-16:00,HS101,Environmental Studies,C301,F023
+MON,16:00-17:30,CS304,Artificial Intelligence,C301,F022
+TUE,09:00-10:30,CS303,Computer Networks,C301,F021
+TUE,10:45-12:15,CS309,Statistics for Computer Science,C301,F020
+TUE,14:30-16:00,HS101,Environmental Studies,C301,F023
+TUE,16:00-17:30,CS304,Artificial Intelligence,C301,F022
+WED,09:00-10:30,HS101,Environmental Studies,C301,F023
+WED,10:45-12:15,CS309,Statistics for Computer Science,C301,F020
+WED,14:30-16:00,AA304,Advanced Algorithm design,C301,F025
+WED,16:00-17:30,CS304,Artificial Intelligence,C301,F022
+THU,09:00-10:30,CS309,Statistics for Computer Science,C301,F020
+THU,10:45-12:15,GS307,Graph Theory,C301,F024
+THU,14:30-16:00,CS303,Computer Networks,C301,F021
+THU,16:00-17:30,HS101,Environmental Studies,C301,F023
+FRI,09:00-10:30,GS307,Graph Theory,C301,F024
+FRI,10:45-12:15,CS304,Artificial Intelligence,C301,F022
+FRI,14:30-16:00,CS303,Computer Networks,C301,F021
+FRI,16:00-17:30,CS309,Statistics for Computer Science,C301,F020

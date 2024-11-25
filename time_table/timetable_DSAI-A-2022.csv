@@ -1,0 +1,21 @@
+Day,Time,Course Code,Course Name,Room,Faculty
+MON,09:00-10:30,DS303,Object Oriented Programming,C301,F072
+MON,10:45-12:15,DS301,Data Structures,C301,F070
+MON,14:30-16:00,DS302,Discrete Mathematics,C301,F071
+MON,16:00-17:30,DS304,Computer Architecture,C301,F074
+TUE,09:00-10:30,DS302,Discrete Mathematics,C301,F071
+TUE,10:45-12:15,DS304,Computer Architecture,C301,F074
+TUE,14:30-16:00,DS303,Object Oriented Programming,C301,F072
+TUE,16:00-17:30,DS301,Data Structures,C301,F070
+WED,09:00-10:30,DS304,Computer Architecture,C301,F074
+WED,10:45-12:15,DS302,Discrete Mathematics,C301,F071
+WED,14:30-16:00,DS303,Object Oriented Programming,C301,F072
+WED,16:00-17:30,DS301,Data Structures,C301,F070
+THU,09:00-10:30,CS307,Design & Analysis of Algorithms,C301,F073
+THU,10:45-12:15,DS303,Object Oriented Programming,C301,F072
+THU,14:30-16:00,,,,
+THU,16:00-17:30,DS301,Data Structures,C301,F070
+FRI,09:00-10:30,DS303,Object Oriented Programming,C301,F072
+FRI,10:45-12:15,DS302,Discrete Mathematics,C301,F071
+FRI,14:30-16:00,DS304,Computer Architecture,C301,F074
+FRI,16:00-17:30,CS307,Design & Analysis of Algorithms,C301,F073

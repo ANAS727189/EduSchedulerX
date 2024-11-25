@@ -14,9 +14,9 @@ HS161,HS161,English Language & Communication,Theory,CSE,A,2,0,2,3-0-0-0-3,4,F011
 MA162,MA162,Probability,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F012
 EC161,EC161,Digital Design,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F013
 ASD151,ASD151,Introduction To Design,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F014
-CS151,CS151,Introduction To CyberSecurity,CSE,A,3,1,0,3-1-0-0-4,4,F015
-PH151,PH151,EIntroduction To Quantum Physics,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F016
-HS151,HS151,Introduction To Personal Finance,Theory,CSE,A,3,0,2,3-0-2-0-4,5,F017
+CS151,CS151,Introduction To CyberSecurity,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F015
+PH151,PH151,EIntroduction To Quantum Physics,Elective,CSE,A,3,0,2,3-0-2-0-4,5,F016
+HS151,HS151,Introduction To Personal Finance,Elective,CSE,A,3,0,2,3-0-2-0-4,5,F017
 
 
 CS309,CS309,Statistics for Computer Science,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F020
@@ -31,18 +31,18 @@ IO304,IO304,Internet Of Things,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F028
 
 
 
-CS457,CS457,DevOps & Its Applications,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F030
-CS451,CS451,Deep Learning,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F031
-CS472,CS472,BioInformatics,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F032
-CS458,CS468,Information Retrieval,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F033
-CS469,CS469,Virtualization & Cloud Computing,Theory,CSE,A,3,1,0,3-1-0-0-4,4,F034
+CS457,CS457,DevOps & Its Applications,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F030
+CS451,CS451,Deep Learning,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F031
+CS472,CS472,BioInformatics,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F032
+CS458,CS468,Information Retrieval,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F033
+CS469,CS469,Virtualization & Cloud Computing,Elective,CSE,A,3,1,0,3-1-0-0-4,4,F034
 
 
-CS471,CS471,Deep Computer Vision,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F040
-DS452,DS452,Advanced Optimization Techniques,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F041
-CS367,CS367,Image Processing & Computer Vision,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F042
-DS457,DS457,Human Computer Interaction,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F043
-EC454,EC454,Antenna & Radar system,Theory,CSE,B,3,1,0,3-1-0-0-4,4,F044
+CS471,CS471,Deep Computer Vision,Elective,CSE,B,3,1,0,3-1-0-0-4,4,F040
+DS452,DS452,Advanced Optimization Techniques,Elective,CSE,B,3,1,0,3-1-0-0-4,4,F041
+CS367,CS367,Image Processing & Computer Vision,Elective,CSE,B,3,1,0,3-1-0-0-4,4,F042
+DS457,DS457,Human Computer Interaction,Elective,CSE,B,3,1,0,3-1-0-0-4,4,F043
+EC454,EC454,Antenna & Radar system,Elective,CSE,B,3,1,0,3-1-0-0-4,4,F044
 
 
 DS201,DS201,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F050
@@ -67,12 +67,12 @@ CS307,CS307,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F073
 DS304,DS304,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F074
 
 
-DS401,DS401,Data Structures,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F080
-CS457,CS457,Discrete Mathematics,Theory,DSAI,A,3,1,0,3-1-0-0-4,4,F081
-CS451,CS451,Object Oriented Programming,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F082
-CS472,CS472,Design & Analysis of Algorithms,Theory,DSAI,A,3,1,0,3-1-2-0-5,4,F083
-DS452,DS452,Computer Architecture,Theory,DSAI,A,3,0,2,3-0-2-0-4,5,F084
-DS457,DS457,Industrial Social Pschology,Theory,DSAI,A,2,0,2,3-0-0-0-3,4,F085
+DS401,DS401,Data Structures,Elective,DSAI,A,3,1,0,3-1-0-0-4,4,F080
+CS457,CS457,Discrete Mathematics,Elective,DSAI,A,3,1,0,3-1-0-0-4,4,F081
+CS451,CS451,Object Oriented Programming,Elective,DSAI,A,3,0,2,3-0-2-0-4,5,F082
+CS472,CS472,Design & Analysis of Algorithms,Elective,DSAI,A,3,1,0,3-1-2-0-5,4,F083
+DS452,DS452,Computer Architecture,Elective,DSAI,A,3,0,2,3-0-2-0-4,5,F084
+DS457,DS457,Industrial Social Pschology,Elective,DSAI,A,2,0,2,3-0-0-0-3,4,F085
 
 
 

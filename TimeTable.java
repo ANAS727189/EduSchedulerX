@@ -74,7 +74,7 @@ public class TimeTable implements Serializable {
         String batchName = newClass.getBatchName();
         String facultyId = newClass.getCourse().getEligibleFacultyIds().get(0);
         
-        // Check if the same subject is already scheduled for this day
+     
         if (isSubjectScheduledForDay(batchName, newClass.getCourse().getCourseCode(), newClass.getTimeSlot().getDay())) {
             return false;
         }
@@ -99,84 +99,89 @@ public class TimeTable implements Serializable {
     }
 
   
-       public void displayTimetable(String batchName) {
-        System.out.println("\n╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.println("║                                       Timetable for " + batchName + "                                                       ║");
-        System.out.println("╠═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
-        System.out.println("║   Time   │   Monday   │   Tuesday  │  Wednesday │  Thursday  │   Friday   ║");
-        System.out.println("╠══════════╪════════════╪════════════╪════════════╪════════════╪════════════╣");
+  public void displayTimetable(String batchName) {
+    // Calculate padding for centering batch name
+    String titleText = "Timetable for " + batchName;
+    int totalWidth = 97; // Total width of the table
+    int padding = (totalWidth - titleText.length()) / 2;
+    String centeredTitle = String.format("%" + padding + "s%s%" + padding + "s", "", titleText, "");
 
-        boolean hasMinorCourses = classes.get(batchName).stream().anyMatch(cls -> cls.getCourse().getCourseType().equalsIgnoreCase("minor"));
-        String[] timeSlots = hasMinorCourses ? ALL_TIME_SLOTS : REGULAR_TIME_SLOTS;
+    System.out.println("\n╔═════════════════════════════════════════════════════════════════════════════════════════════════╗");
+    System.out.println("║" + centeredTitle + "║");
+    System.out.println("╠═════════════════════════════════════════════════════════════════════════════════════════════════╣");
+    System.out.println("║   Time        │   Monday    │   Tuesday   │  Wednesday  │  Thursday   │   Friday    ║");
+    System.out.println("╠══════════════╪════════════╪════════════╪════════════╪════════════╪════════════╣");
 
-        for (String timeSlot : timeSlots) {
-            System.out.printf("║ %8s │", timeSlot);
-            for (String day : DAYS) {
-                boolean slotFilled = false;
-                for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
-                    if (cls.getTimeSlot().getDay().equals(day) &&
-                        isTimeOverlap(cls.getTimeSlot(), new TimeSlot(day, timeSlot.split("-")[0], timeSlot.split("-")[1]))) {
-                        System.out.printf(" %-10s │", cls.getCourse().getCourseCode());
-                        slotFilled = true;
-                        break;
-                    }
-                }
-                if (!slotFilled) {
-                    System.out.print("           │");
+    boolean hasMinorCourses = classes.get(batchName).stream().anyMatch(cls -> cls.getCourse().getCourseType().equalsIgnoreCase("minor"));
+    String[] timeSlots = hasMinorCourses ? ALL_TIME_SLOTS : REGULAR_TIME_SLOTS;
+
+    for (String timeSlot : timeSlots) {
+        System.out.printf("║ %-12s │", timeSlot);
+        for (String day : DAYS) {
+            boolean slotFilled = false;
+            for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
+                if (cls.getTimeSlot().getDay().equals(day) &&
+                    isTimeOverlap(cls.getTimeSlot(), new TimeSlot(day, timeSlot.split("-")[0], timeSlot.split("-")[1]))) {
+                    System.out.printf(" %-10s │", cls.getCourse().getCourseCode());
+                    slotFilled = true;
+                    break;
                 }
             }
-            System.out.println();
+            if (!slotFilled) {
+                System.out.print("           │");
+            }
         }
+        System.out.println();
+    }
 
-        System.out.println("╚══════════╧════════════╧════════════╧════════════╧════════════╧════════════╝");
+    System.out.println("╚══════════════╧════════════╧════════════╧════════════╧════════════╧════════════╝");
 
-    // Table header
-    System.out.printf("%-10s | %-30s | %-10s | %-10s | %-15s | %-15s | %-15s\n",
-                      "Code", "Name", "Type", "Credits", "Branch/Section", "Hours", "Faculty IDs");
+    // Print course details with improved formatting
+    System.out.println("\nCourse Details:");
+    System.out.println("═══════════════");
+    String format = "%-10s │ %-35s │ %-10s │ %-10s │ %-15s │ %-15s │ %-15s\n";
+    System.out.printf(format, "Code", "Name", "Type", "Credits", "Branch/Section", "Hours", "Faculty IDs");
     System.out.println("─".repeat(120));
 
-    // Use a Set to track unique courses by course code
     Set<String> displayedCourses = new HashSet<>();
-    
-    // Table content with duplicate prevention
     for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
         Course course = cls.getCourse();
-        // Only display the course if we haven't seen it before
         if (!displayedCourses.contains(course.getCourseCode()) && !course.getCourseCode().equals("LUNCH")) {
             displayedCourses.add(course.getCourseCode());
-            System.out.printf("%-10s | %-30s | %-10s | %-10s | %-15s | L-%d T-%d P-%d | %-15s\n",
-                              course.getCourseCode(),
-                              course.getName(),
-                              course.getCourseType(),
-                              course.getCredits(),
-                              course.getBranch() + "/" + course.getSection(),
-                              course.getLecture(), course.getTheory(), course.getPractical(),
-                              String.join(", ", course.getEligibleFacultyIds()));
+            System.out.printf(format,
+                course.getCourseCode(),
+                course.getName(),
+                course.getCourseType(),
+                course.getCredits(),
+                course.getBranch() + "/" + course.getSection(),
+                String.format("L-%d T-%d P-%d", course.getLecture(), course.getTheory(), course.getPractical()),
+                String.join(", ", course.getEligibleFacultyIds())
+            );
         }
     }
 
-    // Minor courses section
     System.out.println("\nMinor Courses:");
-        System.out.println("═══════════════");
-        boolean minorCoursesFound = false;
-        Set<String> displayedMinorCourses = new HashSet<>();
-        
-        for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
-            Course course = cls.getCourse();
-            if (course.getCourseType().equalsIgnoreCase("minor") && 
-                !displayedMinorCourses.contains(course.getCourseCode())) {
-                displayedMinorCourses.add(course.getCourseCode());
-                System.out.printf("%-10s | %-30s | %-20s\n",
-                                  course.getCourseCode(),
-                                  course.getName(),
-                                  cls.getTimeSlot());
-                minorCoursesFound = true;
-            }
-        }
-        if (!minorCoursesFound) {
-            System.out.println("No minor courses found for this batch.");
+    System.out.println("═══════════════");
+    boolean minorCoursesFound = false;
+    Set<String> displayedMinorCourses = new HashSet<>();
+    
+    for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
+        Course course = cls.getCourse();
+        if (course.getCourseType().equalsIgnoreCase("minor") && 
+            !displayedMinorCourses.contains(course.getCourseCode())) {
+            displayedMinorCourses.add(course.getCourseCode());
+            System.out.printf("%-10s │ %-30s │ %-20s\n",
+                course.getCourseCode(),
+                course.getName(),
+                cls.getTimeSlot()
+            );
+            minorCoursesFound = true;
         }
     }
+    if (!minorCoursesFound) {
+        System.out.println("No minor courses found for this batch.");
+    }
+}
 
     public List<TimeSlot> findFreeSlots(String batchName, String day) {
         List<TimeSlot> freeSlots = new ArrayList<>();
@@ -213,10 +218,10 @@ public class TimeTable implements Serializable {
 
         public void generateCSV(String batchName, String outputPath) {
         try (FileWriter csvWriter = new FileWriter(outputPath)) {
-            // Write header
+     
             csvWriter.append("Day,Time,Course Code,Course Name,Room,Faculty\n");
 
-            // Create a sorted map of classes by day and time
+           
             Map<String, Map<String, Class>> sortedClasses = new TreeMap<>();
             for (Class cls : classes.getOrDefault(batchName, Collections.emptyList())) {
                 sortedClasses
@@ -227,7 +232,7 @@ public class TimeTable implements Serializable {
             boolean hasMinorCourses = classes.get(batchName).stream().anyMatch(cls -> cls.getCourse().getCourseType().equalsIgnoreCase("minor"));
             String[] timeSlots = hasMinorCourses ? ALL_TIME_SLOTS : REGULAR_TIME_SLOTS;
 
-            // Write data
+          
             for (String day : DAYS) {
                 Map<String, Class> dayClasses = sortedClasses.getOrDefault(day, Collections.emptyMap());
                 for (String timeSlot : timeSlots) {

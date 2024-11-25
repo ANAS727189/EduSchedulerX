@@ -84,11 +84,11 @@ public class Main {
         Map<String, Batch> batchesMap = new HashMap<>();
 
         try {
-            // Read courses
+        
             List<String> courseLines = Files.readAllLines(Paths.get(COURSES_CSV));
             System.out.println("Number of course lines: " + courseLines.size());
             if (!courseLines.isEmpty()) {
-                courseLines.remove(0); // Remove header
+                courseLines.remove(0); 
             }
             for (String line : courseLines) {
                 String[] parts = line.split(",");
@@ -107,11 +107,11 @@ public class Main {
             }
             System.out.println("Number of courses loaded: " + coursesMap.size());
 
-            // Read batches
+           
             List<String> batchLines = Files.readAllLines(Paths.get(BATCHES_CSV));
             System.out.println("Number of batch lines: " + batchLines.size());
             if (!batchLines.isEmpty()) {
-                batchLines.remove(0); // Remove header
+                batchLines.remove(0);
             }
             for (String line : batchLines) {
                 String[] parts = line.split(",");
@@ -130,7 +130,7 @@ public class Main {
             }
             System.out.println("Number of batches loaded: " + batchesMap.size());
 
-            // Generate timetable
+          
             String[] days = {"MON", "TUE", "WED", "THU", "FRI"};
             String[] regularSlots = {"09:00-10:30", "10:45-12:15", "14:30-16:00", "16:00-17:30"};
             String[] labSlots = {"14:30-17:30"};
@@ -139,42 +139,59 @@ public class Main {
             String minorSlot = "08:00-09:00";
 
             for (Batch batch : batchesMap.values()) {
-                // Schedule minor courses only for 2nd year students
-                if (batch.getYear() == 2) {
-                    for (String minorCourse : minorCourses) {
-                        String day = days[new Random().nextInt(days.length)];
-                        String classroom = batch.getLectureRoomIDs().get(new Random().nextInt(batch.getLectureRoomIDs().size()));
-                        
-                        String[] batchParts = batch.getBatchName().split("-");
-                        String branch = batchParts[0];
-                        String section = batchParts.length > 1 ? batchParts[1] : "A";
-                        
-                        Course course = new Course(
-                            minorCourse.toUpperCase(),
-                            minorCourse.toUpperCase(),
-                            "Minor in " + minorCourse,
-                            "minor",
-                            branch,
-                            section,
-                            1, 0, 0,
-                            "1-0-0-0-1",
-                            1,
-                            Arrays.asList("F001")
-                        );
-                        
-                        Class newClass = new Class(
-                            batch.getBatchName(),
-                            classroom,
-                            course,
-                            new TimeSlot(day, minorSlot.split("-")[0], minorSlot.split("-")[1]),
-                            false
-                        );
-
-                        timeTable.addClass(newClass, batch.getBatchName());
-                    }
+              
+               if (batch.getYear() == 2) {
+            for (String minorCourse : minorCourses) {
+                String day = days[new Random().nextInt(days.length)];
+                String classroom = batch.getLectureRoomIDs().get(new Random().nextInt(batch.getLectureRoomIDs().size()));
+                
+                String[] batchParts = batch.getBatchName().split("-");
+                String branch = batchParts[0];
+                String section = batchParts.length > 1 ? batchParts[1] : "A";
+                
+                String courseCode;
+                switch (minorCourse.toLowerCase()) {
+                    case "cybersecurity":
+                        courseCode = "CY201";
+                        break;
+                    case "vlsi":
+                        courseCode = "VL103";
+                        break;
+                    case "genai":
+                        courseCode = "GEN406";
+                        break;
+                    case "research":
+                        courseCode = "RE302";
+                        break;
+                    default:
+                        courseCode = minorCourse.toUpperCase();
                 }
+                
+                Course course = new Course(
+                    courseCode,
+                    courseCode,
+                    "Minor in " + minorCourse,
+                    "minor",
+                    branch,
+                    section,
+                    1, 0, 0,
+                    "1-0-0-0-1",
+                    1,
+                    Arrays.asList("F001")
+                );
+                
+                Class newClass = new Class(
+                    batch.getBatchName(),
+                    classroom,
+                    course,
+                    new TimeSlot(day, minorSlot.split("-")[0], minorSlot.split("-")[1]),
+                    false
+                );
 
-                // Schedule regular courses
+                timeTable.addClass(newClass, batch.getBatchName());
+            }
+        }
+              
                 for (String courseId : batch.getCourseIds()) {
                     Course course = coursesMap.get(courseId);
                     if (course != null) {
@@ -251,11 +268,11 @@ public class Main {
         List<String> batches = new ArrayList<>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(BATCHES_CSV));
-            // Skip the header
+          
             for (int i = 1; i < lines.size(); i++) {
                 String[] parts = lines.get(i).split(",");
                 if (parts.length > 1) {
-                    batches.add(parts[1]); // Assuming batchName is the second column
+                    batches.add(parts[1]);
                 }
             }
         } catch (IOException e) {
@@ -360,7 +377,7 @@ if (!dataFolder.exists()) {
             this.practicalRoomIDs = practicalRoomIDs;
         }
 
-        // Getters
+      
         public String getId() { return id; }
         public String getBatchName() { return batchName; }
         public int getYear() { return year; }
