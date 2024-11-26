@@ -1,116 +1,50 @@
-# 🗓️ EduSchedulerX | Advanced Academic Timetable Management System
+EduSchedulerX User Manual
 
-![EduSchedulerX Banner](/time_table/timetable_CSE-A-2023.png)
+Table of Contents
+1. [Introduction]
+2. [Configuration of Data Files]
+3. [Code Configuration]
+4. [Compiling]
+5. [Execution Samples]
+6. [Frequent Errors and FAQs]
 
-## 📚 Table of Contents
-- [About](#-about)
-- [Features](#-features)
-- [Requirements](#-requirements)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Data Configuration](#-data-configuration)
-- [Example Output](#-example-output)
-- [Contributing](#-contributing)
-- [License](#-license)
+1. Introduction
 
-## 🎓 About
-EduSchedulerX is a sophisticated Java-based timetable management system designed for academic institutions. It automates the process of creating and managing class schedules while considering various constraints such as course types, faculty availability, and classroom assignments. The system provides an intuitive interface for generating, viewing, and managing academic schedules efficiently.
+EduSchedulerX is a Java-based timetable management system designed for academic institutions. It automates the process of creating and managing class schedules, considering various constraints such as course types, faculty availability, and classroom assignments. The system provides features like viewing timetables, finding free slots, and generating visual representations of schedules.
 
-## ✨ Features
-- 📅 Automated timetable generation from CSV data
-- 🏫 Support for multiple batches and departments
-- 📚 Handling of different course types (lecture, practical, minor)
-- 🎯 Intelligent time slot allocation with conflict prevention
-- 🔍 Free slot finder functionality
-- 📊 Multiple output formats (Console, CSV, PNG)
-- 🔄 Save and load timetable states
-- 🍽️ Automatic lunch break scheduling
-- 📱 User-friendly console interface
+Key Features:
+- Automated timetable generation
+- Support for multiple batches and courses
+- Handling of different course types (lecture, practical, minor)
+- Free slot finder
+- Timetable visualization (CSV and image generation)
 
-## 💻 Requirements
-- Java Development Kit (JDK) 8 or higher
-- Minimum 1GB RAM (2GB recommended for large datasets)
-- CSV file support for data input
+ 2. Configuration of Data Files
 
-## 🚀 Installation
+EduSchedulerX requires two main CSV files for input data. These files should be placed in the `timetable_data` folder before running the application.
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/yourusername/EduSchedulerX.git
-cd EduSchedulerX
-```
+2.1 courses.csv
 
-### 2. Create Required Directories
-```bash
-mkdir -p timetable_data time_table
-```
+This file contains information about all courses offered. The structure is as follows:
 
-### 3. Prepare CSV Files
-Place the following CSV files in the `timetable_data` directory:
-- `courses.csv`
-- `batches.csv`
+courses.csv - 
+id,courseCode,name,courseType,branch,section,lecture,theory,practical,credits,hoursPerWeek,eligibleFacultyIds
 
-### 4. Compile the Project
-```bash
-javac *.java
-```
+batches.csv - 
+id,batchName,year,strength,courseIds,lectureRoomIDs,practicalRoomIDs
 
-## 🖥️ Usage
-1. Start the application:
-```bash
-java Main
-```
+3. How to set up and run the files ? 
 
-2. Interactive Menu Options:
-   - View all timetables
-   - View specific timetable
-   - View free slots
-   - Generate timetable images
-   - Generate timetable CSV files
-   - Exit and save changes
+  To compile the java files - 
 
-## 📋 Data Configuration
+   => javac -cp .:lib/json-20230227.jar *.java
 
-### courses.csv Structure
-| Column | Description |
-|--------|-------------|
-| id | Unique course identifier |
-| courseCode | Course code |
-| name | Course name |
-| courseType | Course type (Elective/Core) |
-| branch | Academic branch |
-| section | Course section |
-| lecture | Lecture details |
-| theory | Theory hours |
-| practical | Practical hours |
-| credits | Course credits |
-| hoursPerWeek | Total hours per week |
-| eligibleFacultyIds | IDs of eligible faculty |
+4. To execute the main program - 
 
-### Example courses.csv Entry
-```csv
-01234,DS457,Industrial Social Psychology,Elective,DSAI,A,2023,0,0,0,3,4,F085
-```
+   => java -cp .:lib/json-20230227.jar Main
 
-### batches.csv Structure
-| Column | Description |
-|--------|-------------|
-| id | Unique batch identifier |
-| batchName | Name of the batch |
-| year | Academic year |
-| strength | Number of students |
-| courseIds | Semicolon-separated course IDs |
-| lectureRoomIDs | Lecture room identifiers |
-| practicalRoomIDs | Practical room identifiers |
-
-### Example batches.csv Entry
-```csv
-B012,DSAI-A-2021,450,DS401;CS457;CS451;CS472;DS452;DS457,C401,C002
-```
-
-## 📊 Example Output
-```plaintext
-
+5. Preview of the Project - 
+   
 
 ███████╗██████╗ ██╗   ██╗███████╗ ██████╗██╗  ██╗███████╗██████╗ ██╗   ██╗██╗     ███████╗██████╗ ██╗  ██╗
 ██╔════╝██╔══██╗██║   ██║██╔════╝██╔════╝██║  ██║██╔════╝██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗╚██╗██╔╝
@@ -150,11 +84,11 @@ Timetable for CSE-A-2023:
 ╠═════════════════════════════════════════════════════════════════════════════════════════════════╣
 ║   Time        │   Monday    │   Tuesday   │  Wednesday  │  Thursday   │   Friday    ║
 ╠══════════════╪════════════╪════════════╪════════════╪════════════╪════════════╣
-║ 08:00-09:00  │           │ CY201      │           │           │ GEN406     │
-║ 09:00-10:30  │ CS207      │ CS201      │ MA201      │ CS208      │ CS208      │
-║ 10:45-12:15  │ MA201      │ MA201      │ HS206      │ CS202      │ CS201      │
-║ 14:30-16:00  │ CS208      │ CS208      │ CS201      │ CS201      │ MA201      │
-║ 16:00-17:30  │ CS202      │ CS207      │ CS207      │ CS207      │ CS207      │
+║ 08:00-09:00  │           │ CY201      │           │ VL103      │ GEN406     │
+║ 09:00-10:30  │ CS207      │ MA201      │ MA201      │ CS207      │ CS208      │
+║ 10:45-12:15  │ CS201      │ CS208      │ CS208      │ CS208      │ CS207      │
+║ 14:30-16:00  │ MA201      │ CS202      │ CS201      │ MA201      │ CS202      │
+║ 16:00-17:30  │ CS208      │ HS206      │ CS207      │ CS201      │ CS201      │
 ╚══════════════╧════════════╧════════════╧════════════╧════════════╧════════════╝
 
 Course Details:
@@ -163,6 +97,7 @@ Code       │ Name                                │ Type       │ Credits   
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 CY201      │ Minor in cybersecurity              │ minor      │ 1-0-0-0-1  │ CSE/A           │ L-1 T-0 P-0     │ F001           
 GEN406     │ Minor in genai                      │ minor      │ 1-0-0-0-1  │ CSE/A           │ L-1 T-0 P-0     │ F001           
+VL103      │ Minor in vlsi                       │ minor      │ 1-0-0-0-1  │ CSE/A           │ L-1 T-0 P-0     │ F001           
 MA201      │ Probability                         │ Theory     │ 3-1-0-0-4  │ CSE/A           │ L-3 T-1 P-0     │ F001           
 CS201      │ Discrete Mathematics                │ Theory     │ 3-1-0-0-4  │ CSE/A           │ L-3 T-1 P-0     │ F051           
 CS207      │ Object Oriented Programming         │ Theory     │ 3-0-2-0-4  │ CSE/A           │ L-3 T-0 P-2     │ F052           
@@ -174,22 +109,10 @@ Minor Courses:
 ═══════════════
 CY201      │ Minor in cybersecurity         │ TUE 08:00-09:00     
 GEN406     │ Minor in genai                 │ FRI 08:00-09:00     
+VL103      │ Minor in vlsi                  │ THU 08:00-09:00     
 
 Press Enter to continue to the next timetable...
 
-```
+6. Image generated by the project 
 
-## 🤝 Contributing
-Contributions are welcome! Please follow these steps:
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-[Add your license information here]
-
-## 👨‍💻 Author
-Made with ❤️ by [Anas](https://github.com/ANAS727189)
+ /timetable/timetable_CSE-A-2023.png
